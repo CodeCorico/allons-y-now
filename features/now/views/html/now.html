@@ -1,0 +1,77 @@
+<div class="now">
+
+  {{#inject now-before /}}
+
+  {{#if userCanWrite}}
+    <button class="pl-section now-create" on-click="createPost">{{_('Create')}}</button>
+  {{/if}}
+
+  <section class="pl-section now-search">
+    <input
+      type="text"
+      value="{{search}}"
+      placeholder="{{_('search for any content...')}}"
+      class="now-search-input {{search ? 'searching' : ''}}"
+      on-keypress="updateSearch"
+    />
+    <i class="fa fa-search {{search ? 'searching' : ''}}"></i>
+    <div
+      class="now-search-cross {{search ? 'searching' : ''}}"
+      title="clear the search value"
+      on-click="clearSearch"
+    ></div>
+  </section>
+
+  <section class="pl-section now-list">
+
+    <rv-require name="pl-scrolls" src="/public/vendor/plumes/scrolls/pl-scrolls"></rv-require>
+
+    <div class="pl-scrolls">
+      <!--
+        <a
+          href="/wiki"
+          class="now-home {{homeSelected ? 'selected' : ''}}"
+          style="background-image: url('/public/wiki/wiki-home.jpg');"
+          on-click="goHome"
+        >
+          <span class="now-home-title">{{_('WIKI')}}</span>
+          <span class="now-home-numbers">
+            <span class="number">{{postsCount}}</span>
+            <span>{{_('articles')}}</span>
+            <span>|</span>
+            <span class="number">{{contributorsCount}}</span>
+            <span>{{_('contributors')}}</span>
+          </span>
+        </a>
+      -->
+
+      <!--
+        <rv-require
+          name="wiki-posts-list"
+          src="/public/wiki/wiki-posts-list"
+          ondemand="wiki-posts-list"
+          class="now-lastupdated-posts"
+
+          data-type="lastupdated"
+          data-count="30"
+          data-noviews="true"
+          data-nocontributors="true"
+          data-on-click="postClick"
+          data-on-postsloaded="postsLastUpdatedLoaded"
+        ></rv-require>
+      -->
+
+      <rv-require
+        name="now-search-list"
+        src="/public/now/now-search-list"
+        ondemand="now-search-list"
+        class="now-search-list"
+
+        data-count="30"
+        data-bindparent-search="search"
+        data-on-click="searchClick"
+        data-on-searchloaded="searchLoaded"
+      ></rv-require>
+    </div>
+  </section>
+</div>

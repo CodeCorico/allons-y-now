@@ -1,0 +1,20 @@
+<section class="now-search-list">
+  {{#inject now-search-template /}}
+
+  {{#entities}}
+    {{> .entityType + 'SearchTemplate'}}
+  {{/entities}}
+
+  {{#if noResult}}
+    <div class="now-search-list-no-result">
+      <h5>{{_('No result found for you search.')}}</h5>
+      {{_('Suggestions:')}}
+      <ul>
+        <li>{{_('Make sure that all words are spelled correctly.')}}</li>
+        <li>{{_('Try different keywords.')}}</li>
+        <li>{{_('Try more general keywords.')}}</li>
+        <li>{{_('Try fewer keywords.')}}</li>
+      </ul>
+    </div>
+  {{/if}}
+</section>
