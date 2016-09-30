@@ -73,11 +73,12 @@ module.exports = [{
           });
 
           $allonsy.log('allons-y-now', 'now:search-find:' + $message.search, {
+            label: 'Search "<strong>' + $message.search + '</strong>',
             socket: $socket,
             search: $message.search,
             count: $message.count,
             metric: {
-              key: 'commonNowSearch',
+              key: 'nowSearch',
               name: 'Now search',
               description: '3s pause after typing letters in the search field: the search has been used one time.'
             }
