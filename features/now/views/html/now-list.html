@@ -1,0 +1,17 @@
+<section class="now-list">
+  {{#inject now-template /}}
+
+  {{#inject now-list-before /}}
+
+  {{#activities}}
+    {{> .activityType + 'Template'}}
+  {{/activities}}
+
+  {{#if loaded && !activities.length}}
+    <div class="now-list-no-result">
+      <h5>{{_('No activity found.')}}</h5>
+    </div>
+  {{/if}}
+
+  {{#inject now-list-after /}}
+</section>

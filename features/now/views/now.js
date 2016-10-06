@@ -13,7 +13,15 @@
             inSearch: false,
             search: null
           }, $data)
-        });
+        }),
+        _$el = {
+          layout: $(Now.el),
+          scrolls: $(Now.el).find('.pl-scrolls')
+        };
+
+    function _updateScrolls() {
+      _scrolls.update();
+    }
 
     function _search(search, callback) {
       search = search ? search.trim() : search;
@@ -28,7 +36,7 @@
           var name = $(Now.childrenRequire[i].el).attr('name');
 
           if (
-            (_isSearch && name == 'wiki-posts-list') ||
+            (_isSearch && name == 'now-list') ||
             (!_isSearch && name == 'now-search-list')
           ) {
             Now.childrenRequire[i].teardown();
@@ -37,7 +45,11 @@
           }
         }
 
-        Now.require(_isSearch ? 'now-search-list' : 'wiki-posts-list').then(function() {
+        _$el.scrolls.scrollTop(0);
+
+        Now.require(_isSearch ? 'now-search-list' : 'now-list').then(function() {
+          _updateScrolls();
+
           if (callback) {
             callback();
           }
@@ -87,7 +99,11 @@
       });
     });
 
-    Now.on('searchClick', function() {
+    Now.on('contentLoaded', function() {
+      _updateScrolls();
+    });
+
+    Now.on('itemClick', function() {
       $Layout.closeOnNotDesktop('group-now');
     });
 

@@ -62,7 +62,7 @@
 
     _updateSearch();
 
-    $done();
+    NowSearchList.require().then($done);
   }]);
 
 })();

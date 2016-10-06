@@ -1,6 +1,17 @@
 'use strict';
 
 module.exports = [{
+  event: 'call(now/activities.more)',
+  controller: function($NowService, $socket, $message) {
+    if (!this.validMessage($message, {
+      id: ['string', 'filled']
+    })) {
+      return;
+    }
+
+    $NowService.more($socket, $message.id);
+  }
+}, {
 
   event: 'call(now/search)',
   controller: function($allonsy, EntityModel, $socket, $message) {

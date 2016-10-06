@@ -22,55 +22,31 @@
     ></div>
   </section>
 
-  <section class="pl-section now-list">
+  <section class="pl-section now-container">
 
     <rv-require name="pl-scrolls" src="/public/vendor/plumes/scrolls/pl-scrolls"></rv-require>
 
     <div class="pl-scrolls">
-      <!--
-        <a
-          href="/wiki"
-          class="now-home {{homeSelected ? 'selected' : ''}}"
-          style="background-image: url('/public/wiki/wiki-home.jpg');"
-          on-click="goHome"
-        >
-          <span class="now-home-title">{{_('WIKI')}}</span>
-          <span class="now-home-numbers">
-            <span class="number">{{postsCount}}</span>
-            <span>{{_('articles')}}</span>
-            <span>|</span>
-            <span class="number">{{contributorsCount}}</span>
-            <span>{{_('contributors')}}</span>
-          </span>
-        </a>
-      -->
 
-      <!--
-        <rv-require
-          name="wiki-posts-list"
-          src="/public/wiki/wiki-posts-list"
-          ondemand="wiki-posts-list"
-          class="now-lastupdated-posts"
+      <rv-require
+        name="now-list"
+        src="/public/now/now-list"
+        ondemand="now-list"
 
-          data-type="lastupdated"
-          data-count="30"
-          data-noviews="true"
-          data-nocontributors="true"
-          data-on-click="postClick"
-          data-on-postsloaded="postsLastUpdatedLoaded"
-        ></rv-require>
-      -->
+        data-count="30"
+        data-on-click="itemClick"
+        data-on-searchloaded="contentLoaded"
+      ></rv-require>
 
       <rv-require
         name="now-search-list"
         src="/public/now/now-search-list"
         ondemand="now-search-list"
-        class="now-search-list"
 
         data-count="30"
         data-bindparent-search="search"
-        data-on-click="searchClick"
-        data-on-searchloaded="searchLoaded"
+        data-on-click="itemClick"
+        data-on-activitiesloaded="contentLoaded"
       ></rv-require>
     </div>
   </section>
