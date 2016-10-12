@@ -44,7 +44,11 @@ module.exports = function() {
               userUnknownNow.updatedAt = new Date();
               userUnknownNow.isUnknown = true;
 
-              userUnknownNow.save();
+              EntityModel
+                .update({
+                  entityType: 'userUnknownNow'
+                }, userUnknownNow)
+                .exec(function() { });
             }
           });
       };
@@ -183,30 +187,31 @@ module.exports = function() {
               user.nowActivities.splice(user.nowActivities.length - max, max);
             }
 
-            if (!user.save) {
-              console.log(user);
-            }
+            UserModel
+              .update({
+                id: user.id
+              }, {
+                nowActivities: user.nowActivities
+              })
+              .exec(function() {
+                $SocketsService.each(function(socket) {
+                  if (
+                    (!socket || !socket.user) ||
+                    (user.isUnknown && socket.user.id) ||
+                    (!user.isUnknown && (!socket.user.id || socket.user.id != user.id))
+                  ) {
+                    return;
+                  }
 
-            user.save(function() {
+                  $RealTimeService.fire('now', {
+                    activities: [activity],
+                    oldActivity: oldActivity && oldActivity.id || null,
+                    pushed: true
+                  }, socket);
+                });
 
-              $SocketsService.each(function(socket) {
-                if (
-                  (!socket || !socket.user) ||
-                  (user.isUnknown && socket.user.id) ||
-                  (!user.isUnknown && (!socket.user.id || socket.user.id != user.id))
-                ) {
-                  return;
-                }
-
-                $RealTimeService.fire('now', {
-                  activities: [activity],
-                  oldActivity: oldActivity && oldActivity.id || null,
-                  pushed: true
-                }, socket);
+                nextUser();
               });
-
-              nextUser();
-            });
 
             return;
           }
