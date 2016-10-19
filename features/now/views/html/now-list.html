@@ -9,7 +9,10 @@
 
   {{#if loaded && !activities.length}}
     <div class="now-list-no-result">
+      <img src="/public/now/now-hero.png" />
       <h5>{{_('No activity found.')}}</h5>
+      <p>{{_('Here is all the activity about the content you follow.')}}</p>
+      <button on-click="goto" data-url="/create">Create something</button>
     </div>
   {{/if}}
 

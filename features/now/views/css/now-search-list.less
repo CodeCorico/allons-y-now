@@ -2,12 +2,33 @@
 
 .now-search-list {
   .now-search-list-no-result {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    .transform(translateY(-50%));
     padding: 2rem;
+    text-align: center;
     color: white;
+    margin-top: -8.1rem;
+
+    img {
+      background: @accentColor;
+      width: 90%;
+      margin-bottom: 2rem;
+    }
+
+    p {
+      margin: 0;
+      text-align: left;
+      opacity: 0.5;
+    }
 
     ul {
+      text-align: left;
       padding: 0;
       margin: 0;
+      opacity: 0.5;
     }
 
     li {
