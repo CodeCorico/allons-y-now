@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Display a Now context.",
   "license": "MIT",
-  "homepage": "http://allons-y.io",
+  "homepage": "https://allons-y.io",
   "author": "CodeCorico <hello@codecorico.com>",
   "bugs": "https://github.com/CodeCorico/allons-y-now/issues",
   "repository": {
@@ -14,10 +14,13 @@
     "node": ">=4.1",
     "npm": ">=3.2"
   },
+  "devDependencies": {
+    "allons-y-dev-chore": "^1.0.0"
+  },
   "dependencies": {
     "allons-y-entities": "^1.0.0",
     "allons-y-moment": "^1.0.0",
-    "allons-y-web": "^1.0.0",
+    "allons-y-web": "^1.0.3",
     "async": "^2.0.1",
     "node-uuid": "^1.4.7"
   }

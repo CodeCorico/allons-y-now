@@ -9,7 +9,7 @@ Allons-y-now is an [allons-y](https://github.com/CodeCorico/allons-y) module tha
 
 ## Wiki
 
-The documentation, wiki and every Allons-y-now resources can be found in the [Allons-y.io platform](http://allons-y.io).
+The documentation, wiki and every Allons-y-now resources can be found in the [Allons-y.io platform](https://allons-y.io).
 
 ## Want to help?
 
