@@ -15,7 +15,8 @@ module.exports = function() {
 
           uuid = require('node-uuid'),
           async = require('async'),
-          _this = this;
+          _this = this,
+          _searchQuery = [];
 
       this.init = function() {
         var EntityModel = DependencyInjection.injector.model.get('EntityModel');
@@ -51,6 +52,26 @@ module.exports = function() {
                 .exec(function() { });
             }
           });
+      };
+
+      this.searchQuery = function(func) {
+        if (func) {
+          _searchQuery.push(func);
+
+          return _this;
+        }
+
+        return _searchQuery;
+      };
+
+      this.applySearchQuery = function(query, $socket, $message, callback) {
+        async.eachSeries(_searchQuery, function(func, nextFunc) {
+          func(query, $socket, $message, function() {
+            nextFunc();
+          });
+        }, function() {
+          callback(query);
+        });
       };
 
       this.more = function($socket, id) {

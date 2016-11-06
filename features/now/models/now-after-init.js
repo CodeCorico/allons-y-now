@@ -1,11 +1,7 @@
 'use strict';
 
-module.exports = function($done) {
-  var path = require('path');
-
-  require(path.resolve(__dirname, 'now-service-back.js'))();
-
-  DependencyInjection.injector.controller.get('$NowService').init();
+module.exports = function($NowService, $done) {
+  $NowService.init();
 
   $done();
 };
