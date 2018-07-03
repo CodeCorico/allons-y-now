@@ -22,6 +22,12 @@
     "allons-y-moment": "^1.0.0",
     "allons-y-web": "^1.0.3",
     "async": "^2.0.1",
-    "node-uuid": "^1.4.7"
-  }
+    "node-uuid": "^1.4.7",
+    "snyk": "^1.88.1"
+  },
+  "scripts": {
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
+  },
+  "snyk": true
 }
